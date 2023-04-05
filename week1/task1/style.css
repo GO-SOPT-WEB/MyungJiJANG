@@ -15,10 +15,29 @@ header .container {
   color: #ffff;
   font-size: 30px;
 }
-
-.nav--right i {
+.nav--icon {
   margin-right: 30px;
   color: #ffc585;
+}
+
+.nav--icon:hover + .nav--right__hover {
+  display: block;
+  text-align: center;
+  opacity: 90%;
+}
+
+.nav--right__hover {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 100vh;
+  margin-top: 8px;
+  border-radius: 10px;
+  color: #1a275a;
+  background-color: #a9c4df;
+  font-size: 30px;
 }
 
 .wrapper {
