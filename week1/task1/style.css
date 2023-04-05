@@ -1,5 +1,7 @@
 header {
   background-color: #a3aa7d;
+  font-family: "Dongle", sans-serif;
+  border-radius: 20px;
 }
 
 header .container {
@@ -11,6 +13,7 @@ header .container {
 .container h1 {
   margin-left: 30px;
   color: #ffff;
+  font-size: 30px;
 }
 
 .nav--right i {
@@ -25,6 +28,9 @@ header .container {
 .nav--left {
   background-color: #fcd9a2;
   width: 20%;
+  border-radius: 20px;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-size: 17px;
 }
 
 .nav--left .container {
@@ -34,13 +40,41 @@ header .container {
 }
 
 .nav--left .categori--list {
-  margin-bottom: 10px;
+  margin: 0 0 10px 10px;
 }
 
 .nav--left h3 {
   padding: 10px;
   background-color: #d98a82;
   color: azure;
+  text-align: center;
+}
+
+.nav--left i {
+  display: inline-block;
+  padding: 5px;
+  border: white 1px solid;
+  border-radius: 100px;
+  background-color: white;
+  font-size: 15px;
+}
+
+.nav--left button {
+  display: inline-block;
+  border: white 1px solid;
+  border-radius: 10px;
+  background-color: white;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-size: 20px;
+}
+
+.nav--left button:hover {
+  width: 200px;
+  color: white;
+  background-color: #a3aa7d;
+  text-align: start;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-size: 20px;
 }
 
 .card--section {
@@ -54,20 +88,74 @@ header .container {
 }
 
 .card--list .card--inner {
-  width: 20%;
+  width: 230px;
+  margin: 30px 15px 30px 15px;
   border: #b8b19a 5px solid;
   border-radius: 20px;
-  margin: 30px 15px 30px 15px;
+  background-color: rgba(249, 255, 247, 0.606);
+}
+
+.card--inner h3 {
+  display: inline-block;
+  align-items: center;
+  border: #b8b19a 2px solid;
+  border-radius: 10px;
+  margin: 10px 0 0 0;
+  padding: 5px;
+  background-color: #b8b19a;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-size: medium;
 }
 
 .card--inner img {
+  display: block;
   width: 150px;
   height: 150px;
-
+  margin: auto;
   border: #c8d9b0 5px solid;
   border-radius: 100px;
 }
 
 .card--inner .hashtag {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hashtag p {
+  width: 120px;
+  height: 20px;
+
+  margin: 15px 0px;
+  color: rgb(126, 120, 120);
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-weight: 200;
+  font-size: 14px;
+
+  text-overflow: clip;
+  overflow: hidden;
+}
+
+.hashtag button {
+  width: 25px;
+  height: 25px;
+
+  /* margin-right: 5px; */
+  border: #d98a82 3px solid;
+  border-radius: 100px;
+
+  background-color: #d98a82;
+  color: white;
+  text-align: center;
+}
+
+.card--inner__footer {
+  margin: 0 10px 5px 0;
+  color: #ffdddd;
+  text-align: end;
+  font-size: 20px;
+}
+
+.card--inner__footer:hover {
+  color: #d98a82;
 }
