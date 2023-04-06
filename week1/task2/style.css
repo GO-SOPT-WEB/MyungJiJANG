@@ -51,6 +51,8 @@ header p {
 }
 
 .todo--title .title1 {
+  display: inline;
+  padding: 3px 15px;
   border-radius: 3px;
   background-color: #f5b137;
 }
@@ -85,10 +87,13 @@ header p {
 
 .todo {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  width: 80%;
-  margin: 20px;
+  justify-content: space-around;
+}
+
+.todo-category {
+  width: 170px;
+  height: 180px;
 }
 
 .todo .todo--list {
@@ -101,4 +106,49 @@ footer {
   align-items: center;
   position: sticky;
   bottom: 0;
+}
+
+/* info */
+.info {
+  margin: 7px;
+  height: 170px;
+  border: #554b32 3px solid;
+  border-radius: 5px;
+}
+
+.use-direction h4 {
+  margin: 0;
+  text-align: center;
+  background-color: #f5b2379e;
+}
+
+.use-direction .detail {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}
+
+.calender--button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 60px;
+  border: #19627f 2px double;
+  border-radius: 50px;
+  background-color: #9bb289;
+  box-shadow: 5px 3px 2px #3e4935;
+}
+
+.mypage-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 60px;
+  margin-top: 5px;
+  border: #19627f 2px double;
+  border-radius: 50px;
+  background-color: #9bb289;
+  box-shadow: 5px 3px 2px #3e4935;
 }
