@@ -85,6 +85,10 @@ header p {
   background-color: rgb(255, 255, 255);
 }
 
+.todo--title button:hover {
+  background-color: #9bb289;
+}
+
 .todo {
   display: flex;
   flex-wrap: wrap;
@@ -98,6 +102,93 @@ header p {
 
 .todo .todo--list {
   display: flex;
+}
+
+.detail span {
+  border-radius: 50px;
+  background-color: #f5b137;
+}
+
+.detail img {
+  border: #f5b137 3px solid;
+  border-radius: 50px;
+}
+
+/*list hover*/
+.todo--list img:hover {
+  opacity: 0;
+}
+
+.todo--list img:hover + .DoneHambbung {
+  display: block;
+}
+.DoneHambbung {
+  display: none;
+  position: absolute;
+  top: 515px;
+}
+
+.todo--list img:hover + .DoneHambbung0 {
+  display: block;
+}
+.DoneHambbung0 {
+  display: none;
+  position: absolute;
+  top: 460px;
+}
+
+.todo--list img:hover + .DoneHambbung1 {
+  display: block;
+}
+.DoneHambbung1 {
+  display: none;
+  position: absolute;
+  top: 640px;
+}
+
+.todo--list img:hover + .DoneHambbung2 {
+  display: block;
+}
+.DoneHambbung2 {
+  display: none;
+  position: absolute;
+  top: 695px;
+}
+
+.todo--list img:hover + .DoneHambbung3 {
+  display: block;
+}
+.DoneHambbung3 {
+  display: none;
+  position: absolute;
+  top: 640px;
+}
+
+.todo--list img:hover + .DoneHambbung4 {
+  display: block;
+}
+.DoneHambbung4 {
+  display: none;
+  position: absolute;
+  top: 695px;
+}
+
+.todo--list img:hover + .NoHambbung1 {
+  display: block;
+}
+.NoHambbung1 {
+  display: none;
+  position: absolute;
+  top: 455px;
+}
+
+.todo--list img:hover + .NoHambbung2 {
+  display: block;
+}
+.NoHambbung2 {
+  display: none;
+  position: absolute;
+  top: 515px;
 }
 
 footer {
@@ -140,6 +231,11 @@ footer {
   box-shadow: 5px 3px 2px #3e4935;
 }
 
+.calender--button:hover {
+  color: #9bb289;
+  background-color: white;
+}
+
 .mypage-button {
   display: flex;
   justify-content: center;
@@ -151,4 +247,9 @@ footer {
   border-radius: 50px;
   background-color: #9bb289;
   box-shadow: 5px 3px 2px #3e4935;
+}
+
+.mypage-button:hover {
+  color: #9bb289;
+  background-color: white;
 }
