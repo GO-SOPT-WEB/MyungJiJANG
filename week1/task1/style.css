@@ -20,13 +20,11 @@ header .container {
   color: #ffc585;
 }
 
-.nav--icon:hover + .nav--right__hover {
+.nav--icon:hover .right--category__list {
   display: block;
-  text-align: center;
-  opacity: 90%;
 }
 
-.nav--right__hover {
+.right--category__list {
   display: none;
   position: absolute;
   top: 0;
@@ -38,6 +36,10 @@ header .container {
   color: #1a275a;
   background-color: #a9c4df;
   font-size: 30px;
+}
+
+.right--category__list p:hover {
+  color: white;
 }
 
 .wrapper {
