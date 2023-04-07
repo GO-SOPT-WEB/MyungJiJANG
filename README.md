@@ -1,6 +1,14 @@
 ![웹파트-장명지](https://user-images.githubusercontent.com/79238676/227775976-6d5d0594-d342-465b-94d8-35239bae3b6e.png)
 
 <div align=center>
+  
+  <h1>
+    ( ͡° ͜ʖ ͡°)묭디 보러왔군하?(˵ ͡° ͜ʖ ͡°˵)
+  </h1>
+  
+</div>
+
+<div align=center>
 
   |주차|과제 내용|링크|
 |------|---|---|
