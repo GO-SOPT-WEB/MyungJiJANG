@@ -55,7 +55,7 @@ header .container {
   border-radius: 20px;
   font-family: "IBM Plex Sans KR", sans-serif;
   font-size: 17px;
-  margin-top: 90px;
+  margin-top: 110px;
 }
 
 .nav--left .container {
@@ -102,7 +102,7 @@ header .container {
 
 .card--section {
   width: 80%;
-  margin-top: 70px;
+  margin-top: 100px;
 }
 .container .card--list {
   display: flex;
@@ -113,13 +113,25 @@ header .container {
 }
 
 .card--list .card--inner {
-  width: 230px;
-  margin: 30px 15px 30px 15px;
+  max-width: 230px;
+  width: 100%;
+  margin: 30px 15px;
   border: #b8b19a 5px solid;
   border-radius: 20px;
   background-color: rgba(249, 255, 247, 0.606);
 }
 
+@media (max-width: 700px) {
+  .card--section {
+    margin-left: -50px;
+    width: 700px;
+  }
+
+  .card--list .card--inner {
+    max-width: 100%;
+    width: 100%;
+  }
+}
 .card--inner h3 {
   display: inline-block;
   align-items: center;
