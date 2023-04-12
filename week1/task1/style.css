@@ -110,7 +110,7 @@ header .header--container {
 }
 .container .card--list {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-left: 80px;
