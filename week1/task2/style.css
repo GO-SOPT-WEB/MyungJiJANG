@@ -1,0 +1,104 @@
+* {
+  max-width: 390px;
+  max-height: 844px;
+  overflow: visible;
+  font-family: "Hahmlet", serif;
+}
+header {
+  margin-left: 5px;
+}
+
+header h1 {
+  margin-bottom: 0;
+}
+
+header p {
+  margin-top: 2px;
+  color: #6a6a6a;
+  background-color: rgba(255, 236, 131, 0.804);
+  line-height: 8px;
+}
+
+.calender {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: #554b32 2px solid;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+.grid--container {
+  display: grid;
+  grid-template-columns: repeat(7, 50px);
+  text-align: center;
+}
+
+:nth-child(14) {
+  border-style: ridge;
+  background-color: #9bb289;
+  box-shadow: 1px 1px 2px 1px #554b32;
+}
+
+.grid--container .grid-todo {
+  border-radius: 300px;
+  border: #9bb289 3px dotted;
+}
+
+.todo--title {
+  display: flex;
+  align-items: center;
+}
+
+.todo--title .title1 {
+  border-radius: 3px;
+  background-color: #f5b137;
+}
+
+.todo--title .title2 {
+  display: inline;
+  padding: 3px 15px;
+  border-radius: 3px;
+  background-color: #fb8081;
+}
+.todo--title .title3 {
+  display: inline;
+  padding: 3px 15px;
+  border-radius: 3px;
+  background-color: #61c5eb;
+}
+
+.todo--title .title4 {
+  display: inline;
+  padding: 3px 15px;
+  border-radius: 3px;
+  background-color: rgb(185, 119, 232);
+}
+
+.todo--title button {
+  width: 32px;
+  height: 33px;
+  border: #554b32 2px solid;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+}
+
+.todo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 20px;
+}
+
+.todo .todo--list {
+  display: flex;
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
+}
