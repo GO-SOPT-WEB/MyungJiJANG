@@ -45,7 +45,7 @@ header .header--container {
   font-size: 30px;
 }
 
-.right--category__list p:hover {
+.right--category__list li:hover {
   color: white;
 }
 
@@ -62,13 +62,32 @@ header .header--container {
   margin-top: 110px;
 }
 
-.nav--left .container {
+.nav--left .nav--left__container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.nav--left .category--list {
+.nav--left__container input {
+  display: inline-block;
+  border: white 1px solid;
+  border-radius: 10px;
+  background-color: white;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-size: 20px;
+  list-style-type: none;
+}
+
+.nav--left__container input:hover {
+  display: inline-block;
+  color: white;
+  background-color: #a3aa7d;
+  text-align: start;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-size: 20px;
+}
+
+.nav--left ul {
   margin: 0 0 10px 10px;
 }
 
@@ -87,21 +106,59 @@ header .header--container {
   font-size: 15px;
 }
 
-.nav--left button {
-  border: white 1px solid;
-  border-radius: 10px;
-  background-color: white;
-  font-family: "IBM Plex Sans KR", sans-serif;
-  font-size: 20px;
+/* 태그 부분 */
+.nav--tag__container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
 }
 
-.nav--left button:hover {
-  display: inline-block;
+#text--all {
+  width: 80px;
+  height: 30px;
   color: white;
   background-color: #a3aa7d;
+  border-radius: 10px;
   text-align: start;
   font-family: "IBM Plex Sans KR", sans-serif;
   font-size: 20px;
+  display: none;
+}
+
+#text--dog {
+  width: 80px;
+  height: 30px;
+  color: white;
+  background-color: #a3aa7d;
+  border-radius: 10px;
+  text-align: start;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-size: 20px;
+  display: none;
+}
+
+#text--cat {
+  width: 80px;
+  height: 30px;
+  color: white;
+  background-color: #a3aa7d;
+  border-radius: 10px;
+  text-align: start;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-size: 20px;
+  display: none;
+}
+
+#text--ect {
+  width: 80px;
+  height: 30px;
+  color: white;
+  background-color: #a3aa7d;
+  border-radius: 10px;
+  text-align: start;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-size: 20px;
+  display: none;
 }
 
 .card--section {
