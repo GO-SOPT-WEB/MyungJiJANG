@@ -1,4 +1,4 @@
-export const CUTE_ITEM_LIST = [
+const CUTE_ITEM_LIST = [
   {
     id: 1,
     name: "봉지",
