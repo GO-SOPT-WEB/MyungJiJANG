@@ -47,6 +47,7 @@ function filterList(categoryName, isAll) {
   `;
     container.appendChild(card);
   });
+  addEventHashTagBtn();
 }
 
 //디폴트로 전체 버튼 눌려있기!
@@ -285,20 +286,23 @@ function showHashtags(hashtags) {
 }
 
 // 해시태그 버튼 클릭 시 모달을 열고 해시태그를 띄움
-const hashtagBtn = document.querySelectorAll(".showMore"); //리스트 형태임-> forEach로 안에 item하나하나에 다 이벤트를 주어야함.
+function addEventHashTagBtn() {
+  // 해시태그 버튼 클릭 시 모달을 열고 해시태그를 띄움
+  const hashtagBtn = document.querySelectorAll(".showMore");
+  console.log(hashtagBtn);
 
-hashtagBtn.forEach((item) => {
-  item.addEventListener("click", function (e) {
-    console.log("찍혀라미친");
-    const hashtags = CUTE_ITEM_LIST.filter(
-      (item) =>
-        item.name ===
-        e.target.parentNode.parentNode.querySelector("h3").textContent
-    )[0].hashtag;
-    openModal(hashtags);
-    showHashtags(hashtags);
+  hashtagBtn.forEach((item) => {
+    item.addEventListener("click", function (e) {
+      const hashtags = CUTE_ITEM_LIST.filter(
+        (item) =>
+          item.name ===
+          e.target.parentNode.parentNode.querySelector("h3").textContent
+      )[0].hashtag;
+      openModal(hashtags);
+      showHashtags(hashtags);
+    });
   });
-});
+}
 
 // 모달 닫기 버튼 클릭 시 모달을 닫음
 const closeBtn = document.querySelector(".close");
