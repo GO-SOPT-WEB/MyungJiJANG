@@ -16,6 +16,8 @@
       href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;700&family=IBM+Plex+Sans+KR:wght@500&display=swap"
       rel="stylesheet"
     />
+    <script type="module" src="script.js"></script>
+    <script type="module" src="CUTE_ITEM_LIST.js"></script>
     <title>귀요미 저장소</title>
   </head>
   <body>
@@ -78,8 +80,8 @@
             <i class="fa-solid fa-face-smile"></i>
             <input
               type="button"
-              id="category-ect"
-              class="category-ect"
+              id="category-etc"
+              class="category-etc"
               value="기타"
             />
           </ul>
@@ -87,7 +89,7 @@
             <button type="button" id="text--all" class="text--all"></button>
             <button type="button" id="text--dog" class="text--dog"></button>
             <button type="button" id="text--cat" class="text--cat"></button>
-            <button type="button" id="text--ect" class="text--ect"></button>
+            <button type="button" id="text--etc" class="text--etc"></button>
           </div>
         </div>
       </nav>
@@ -97,6 +99,13 @@
         <div class="card--list"></div>
       </section>
     </div>
-    <script type="text/javascript" src="script.js"></script>
+
+    <!--모달-->
+    <div id="hashtag-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">x</span>
+        <div class="modal-body"></div>
+      </div>
+    </div>
   </body>
 </html>
