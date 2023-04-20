@@ -38,16 +38,23 @@ function filterList(categoryName, isAll) {
           .map((tag) => `<p class="hashtagItems">#${tag} </p>`)
           .join("")} ${
       item.hashtag.length > 2
-        ? `<button class="showMore" type="button"> + </button>`
+        ? `<button class="showMore ${item.name}" type="button"> + </button>`
         : "" //온클릭 바로주기는 안됨 => 지역 변수만 인식(?)
     }
       </div>
       <div class="card--inner__footer">♥</div>
     </div>
+    <div class="modal ${item.name}">
+      <div class="modal-content">
+        <button class="close ${item.name}">x</button>
+        <div class="modal-body"></div>
+      </div>
+    </div>
   `;
     container.appendChild(card);
   });
   addEventHashTagBtn();
+  closeEventBtn();
 }
 
 //디폴트로 전체 버튼 눌려있기!
@@ -203,8 +210,7 @@ textCatBtn.onclick = function () {
     textCatClick.style.display = "none";
     catBtn.classList.remove("active");
     const card = document.querySelectorAll(".cat");
-    const container = document.querySelectorAll(".cat > .card--inner"); //이왜지?=> 낼 서현 질문**
-
+    const container = document.querySelectorAll(".cat > .card--inner");
     if (container[0].classList.contains("selected_all")) {
       for (let i = 0; i < container.length; i++) {
         container[i].classList.remove("selected_cat");
@@ -266,17 +272,46 @@ textEtcBtn.onclick = function () {
 };
 
 //모달
-function openModal() {
-  document.getElementById("hashtag-modal").style.display = "block";
+function openModal(className) {
+  // 같은 class 이름 가진 모달 찾기
+  document.querySelector(`.card > div.modal.${className}`).style.display =
+    "block";
 }
 
-function closeModal() {
-  document.getElementById("hashtag-modal").style.display = "none";
+function closeModal(className) {
+  document.querySelector(`.card > div.modal.${className}`).style.display =
+    "none";
 }
+
+//지울 부분 찾기
+function searchCloseBtn(className) {
+  const modalContent = document.querySelector(
+    `.card > div.modal.${className}.close`
+  );
+  modalContent.style.display = "none";
+}
+
+function closeEventBtn() {
+  const closeBtn = document.querySelectorAll(".close");
+
+  closeBtn.forEach((item) => {
+    item.addEventListener("click", function (e) {
+      const { classList } = e.target;
+      closeModal(classList[1]);
+      searchCloseBtn(closeBtn, classList[1]);
+    });
+  });
+}
+
+// // 모달 닫기 버튼 클릭 시 모달을 닫음
+// const closeBtn = document.querySelector(".close");
+// closeBtn.addEventListener("click", closeModal);
 
 // 해시태그를 띄우는 함수
-function showHashtags(hashtags) {
-  const modalBody = document.querySelector(".modal-body");
+function showHashtags(hashtags, className) {
+  const modalBody = document.querySelector(
+    `.card > div.modal.${className} .modal-body`
+  );
   modalBody.innerHTML = "";
   hashtags.forEach((tag) => {
     const tagEl = document.createElement("p");
@@ -287,9 +322,7 @@ function showHashtags(hashtags) {
 
 // 해시태그 버튼 클릭 시 모달을 열고 해시태그를 띄움
 function addEventHashTagBtn() {
-  // 해시태그 버튼 클릭 시 모달을 열고 해시태그를 띄움
   const hashtagBtn = document.querySelectorAll(".showMore");
-  console.log(hashtagBtn);
 
   hashtagBtn.forEach((item) => {
     item.addEventListener("click", function (e) {
@@ -298,12 +331,9 @@ function addEventHashTagBtn() {
           item.name ===
           e.target.parentNode.parentNode.querySelector("h3").textContent
       )[0].hashtag;
-      openModal(hashtags);
-      showHashtags(hashtags);
+      const { classList } = e.target;
+      openModal(classList[1]);
+      showHashtags(hashtags, classList[1]);
     });
   });
 }
-
-// 모달 닫기 버튼 클릭 시 모달을 닫음
-const closeBtn = document.querySelector(".close");
-closeBtn.addEventListener("click", closeModal);
