@@ -1,8 +1,7 @@
 * {
-  max-width: 390px;
+  /* max-width: 390px;
   max-height: 844px;
-  overflow: hidden;
-  font-family: "Hahmlet", serif;
+  font-family: "Hahmlet", serif; */
 }
 header {
   margin-left: 5px;
@@ -46,9 +45,15 @@ header p {
 
 /*투두리스트*/
 
+.todo {
+  display: flex;
+  flex-direction: column;
+}
+
 .todo-category {
   display: flex;
   flex-flow: column wrap;
+  align-items: center;
   width: 374px;
   height: 390px;
 }

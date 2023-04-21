@@ -30,15 +30,27 @@ function changeStatus(event) {
   button.dataset.status = newStatus;
   button.innerHTML = icon;
 
-  const categoryDiv = button.closest(".todo--list");
-  const index = categoryDiv.dataset.index;
-  const taskName = button.closest(".statusClick").innerText.trim();
-  const tasks = TODO_LIST[index]?.tasks;
-  if (tasks) {
-    const task = tasks.find((task) => task.name === taskName);
-    if (task) {
-      task.status = newStatus;
-    }
+  const categoryDiv = button.closest(".statusClick");
+  if (newStatus === "done") {
+    const todoListItems = categoryDiv.querySelectorAll(".todo--list");
+    todoListItems.forEach((item) => {
+      if (item.querySelector(".status").dataset.status === "done") {
+        doneCount++;
+        willDoCount--;
+      } else {
+        willDoCount++;
+      }
+    });
+  } else {
+    const todoListItems = categoryDiv.querySelectorAll(".todo--list");
+    todoListItems.forEach((item) => {
+      if (item.querySelector(".status").dataset.status !== "done") {
+        willDoCount++;
+        doneCount--;
+      } else {
+        doneCount--;
+      }
+    });
   }
   updateCount();
   console.log(newStatus);
@@ -48,11 +60,9 @@ function changeStatus(event) {
 function renderCategories() {
   TODO_LIST.map((item, index) => {
     const categoryDiv = document.createElement("div");
-    categoryDiv.classList.add("todo--list");
+    categoryDiv.classList.add("todo-container");
     categoryDiv.dataset.index = index;
     categoryDiv.innerHTML = `
-    <section class="todo">
-      <div class="todo--category">
         <div class="todo--title">
           <h3 class="${item.category}">${item.categoryName}</h3>
           <button class="addBtn" type="button">+</button>
@@ -60,8 +70,6 @@ function renderCategories() {
         <div class ="todo--list">
           ${renderTasks(item.tasks)}
         </div>
-      </div>
-    </section>
   `;
     categoryContainer.appendChild(categoryDiv);
 
