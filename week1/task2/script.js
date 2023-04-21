@@ -1,42 +1,66 @@
 import { TODO_LIST } from "./TODO_LIST.js";
 
-// 한 일 안한일 구분하기
-//달력에 표시하기
-//할 일 체크 함수<햇>
-//페이지 이동
-
-//리스트 map으로 출력<기능0>
 const categoryContainer = document.querySelector(".todo-category");
 
-TODO_LIST.map((item, index) => {
-  const categoryDiv = document.createElement("div");
-  categoryDiv.classList.add("todo--list");
+// 할일 리스트 함수
+function renderTasks(tasks) {
+  return tasks
+    .map(
+      (task) =>
+        `<p><span class="status">${getStatusIcon(task.status)}</span>${
+          task.name
+        } </p>`
+    )
+    .join("");
+}
 
-  categoryDiv.innerHTML = `
+//상태표시 아이콘 함수
+function getStatusIcon(status) {
+  return status === "done" ? "❤️" : "🤍";
+}
+
+// 카테고리 네임 & 카테고리 렌더 함수
+function renderCategories() {
+  TODO_LIST.map((item, index) => {
+    const categoryDiv = document.createElement("div");
+    categoryDiv.classList.add("todo--list");
+    categoryDiv.dataset.index = index;
+
+    categoryDiv.innerHTML = `
     <section class="todo">
       <div class="todo--category">
         <div class="todo--title">
           <h3 class="${item.category}">${item.categoryName}</h3>
-          <button class="addBtn" data-index="${index}" type="button">+</button>
-        </div>   
-        <div class="todo--list">
-        ${item.tasks
-          .map(
-            (task) =>
-              `<p><span class="status">${
-                task.status === "done" ? item.Done : item.willDO
-              }</span>${task.name} </p>`
-          )
-          .join("")} 
-        </div> 
+          <button class="addBtn" type="button">+</button>
+        </div>
+        <div class ="todo--list">
+          ${renderTasks(item.tasks)}
+        </div>
       </div>
     </section>
   `;
-  //tasks안에 name이 태스크 배열
+    categoryContainer.appendChild(categoryDiv);
 
-  //모달 할일 추가 만들기<기능2>
-  categoryContainer.appendChild(categoryDiv);
+    const modal = createModal(index);
+    categoryDiv.appendChild(modal);
 
+    const addBtn = categoryDiv.querySelector(".addBtn");
+
+    addBtn.addEventListener("click", () => {
+      modal.style.display = "block";
+    });
+
+    window.addEventListener("click", (event) => {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    });
+  });
+}
+
+//모달만들기
+
+function createModal(index) {
   const modal = document.createElement("div");
   modal.classList.add("modal");
   modal.innerHTML = `
@@ -47,16 +71,10 @@ TODO_LIST.map((item, index) => {
       <button id="saveAddBtn">추가</button>
     </div>
   `;
-  categoryDiv.appendChild(modal);
-
-  const addBtn = categoryDiv.querySelector(`[data-index="${index}"]`);
-  const closeBtn = modal.querySelector(".close");
-  const saveAddBtn = modal.querySelector("#saveAddBtn");
   modal.style.display = "none";
 
-  addBtn.addEventListener("click", () => {
-    modal.style.display = "block";
-  });
+  const closeBtn = modal.querySelector(".close");
+  const saveAddBtn = modal.querySelector("#saveAddBtn");
 
   closeBtn.addEventListener("click", () => {
     modal.style.display = "none";
@@ -66,37 +84,20 @@ TODO_LIST.map((item, index) => {
     const addNewTask = document.querySelector("#addNewTask").value;
     const newTask = { name: addNewTask, status: "no" };
     TODO_LIST[index].tasks.push(newTask);
-    const todoListDiv = categoryDiv.querySelector(".todo--list");
 
-    todoListDiv.innerHTML = `
-    ${item.tasks
-      .map(
-        (task) =>
-          `<p><span class="status">${
-            task.status === "done" ? item.Done : item.willDO
-          }</span>${task.name} </p>`
-      )
-      .join("")}
-      `;
-    //상태 조건문
-    if (newTask.status === "no") {
-      newTask.willDO = "🤍";
-    } else if (newTask.status === "done") {
-      newTask.Done = "❤️";
-    }
+    const todoListDiv = document.querySelector(
+      `[data-index="${index}"] .todo--list`
+    );
+    todoListDiv.innerHTML = renderTasks(TODO_LIST[index].tasks);
 
     modal.style.display = "none";
+    updateCount();
   });
 
-  window.addEventListener("click", (event) => {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  });
-  updateCount();
-});
+  return modal;
+}
 
-//<할일 카운터>
+//할 일 카운터 함수
 function updateCount() {
   let willDoCount = 0;
   let doneCount = 0;
@@ -112,4 +113,15 @@ function updateCount() {
   });
 
   console.log(`할 일 개수: ${willDoCount}, 완료 개수: ${doneCount}`);
+
+  const gridTodo = document.querySelector(".grid-todo-today");
+  gridTodo.innerHTML = `${willDoCount}`; //할 일 카운터 화면에 띄우기
 }
+
+//화면 초기화 시 렌더링 함수 init();(안하니까 초기 화면이 안뜸)
+function init() {
+  updateCount();
+  renderCategories();
+}
+
+init();
