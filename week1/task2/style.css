@@ -50,7 +50,7 @@ header p {
   display: flex;
   flex-flow: column wrap;
   width: 374px;
-  height: 370px;
+  height: 390px;
 }
 
 .todo--list {
@@ -200,9 +200,10 @@ footer {
 /* info */
 .info {
   margin: 7px;
-  height: 170px;
+  height: 130px;
   border: #554b32 3px solid;
   border-radius: 5px;
+  font-size: 12px;
 }
 
 .use-direction h4 {

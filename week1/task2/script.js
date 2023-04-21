@@ -5,7 +5,7 @@ import { TODO_LIST } from "./TODO_LIST.js";
 //할 일 체크 함수<햇>
 //페이지 이동
 
-//리스트 map으로 출력
+//리스트 map으로 출력<기능0>
 const categoryContainer = document.querySelector(".todo-category");
 
 TODO_LIST.map((item, index) => {
@@ -20,7 +20,14 @@ TODO_LIST.map((item, index) => {
           <button class="addBtn" data-index="${index}" type="button">+</button>
         </div>   
         <div class="todo--list">
-          ${item.tasks.map((task) => `<p>${task.name}</p>`).join("")} 
+        ${item.tasks
+          .map(
+            (task) =>
+              `<p><span class="status">${
+                task.status === "done" ? item.Done : item.willDO
+              }</span>${task.name} </p>`
+          )
+          .join("")} 
         </div> 
       </div>
     </section>
@@ -57,10 +64,27 @@ TODO_LIST.map((item, index) => {
 
   saveAddBtn.addEventListener("click", () => {
     const addNewTask = document.querySelector("#addNewTask").value;
-    const newTask = { name: addNewTask };
+    const newTask = { name: addNewTask, status: "no" };
     TODO_LIST[index].tasks.push(newTask);
     const todoListDiv = categoryDiv.querySelector(".todo--list");
-    todoListDiv.innerHTML += `<p>${newTask.name}</p>`;
+
+    todoListDiv.innerHTML = `
+    ${item.tasks
+      .map(
+        (task) =>
+          `<p><span class="status">${
+            task.status === "done" ? item.Done : item.willDO
+          }</span>${task.name} </p>`
+      )
+      .join("")}
+      `;
+    //상태 조건문
+    if (newTask.status === "no") {
+      newTask.willDO = "🤍";
+    } else if (newTask.status === "done") {
+      newTask.Done = "❤️";
+    }
+
     modal.style.display = "none";
   });
 
@@ -69,4 +93,23 @@ TODO_LIST.map((item, index) => {
       modal.style.display = "none";
     }
   });
+  updateCount();
 });
+
+//<할일 카운터>
+function updateCount() {
+  let willDoCount = 0;
+  let doneCount = 0;
+
+  TODO_LIST.forEach((item) => {
+    item.tasks.forEach((task) => {
+      if (task.status === "done") {
+        doneCount++;
+      } else {
+        willDoCount++;
+      }
+    });
+  });
+
+  console.log(`할 일 개수: ${willDoCount}, 완료 개수: ${doneCount}`);
+}
