@@ -7,9 +7,11 @@ function renderTasks(tasks) {
   return tasks
     .map(
       (task) =>
-        `<p><span class="status">${getStatusIcon(task.status)}</span>${
-          task.name
-        } </p>`
+        `<p class="statusClick"><button type="button" class="status" data-status="${
+          task.status
+        }">
+      ${getStatusIcon(task.status)}
+    </button>${task.name}</p>`
     )
     .join("");
 }
@@ -19,13 +21,35 @@ function getStatusIcon(status) {
   return status === "done" ? "❤️" : "🤍";
 }
 
+function changeStatus(event) {
+  const button = event.target.closest(".status");
+  if (!button) return;
+  const status = button.dataset.status;
+  const newStatus = status === "done" ? "no" : "done";
+  const icon = getStatusIcon(newStatus);
+  button.dataset.status = newStatus;
+  button.innerHTML = icon;
+
+  const categoryDiv = button.closest(".todo--list");
+  const index = categoryDiv.dataset.index;
+  const taskName = button.closest(".statusClick").innerText.trim();
+  const tasks = TODO_LIST[index]?.tasks;
+  if (tasks) {
+    const task = tasks.find((task) => task.name === taskName);
+    if (task) {
+      task.status = newStatus;
+    }
+  }
+  updateCount();
+  console.log(newStatus);
+}
+
 // 카테고리 네임 & 카테고리 렌더 함수
 function renderCategories() {
   TODO_LIST.map((item, index) => {
     const categoryDiv = document.createElement("div");
     categoryDiv.classList.add("todo--list");
     categoryDiv.dataset.index = index;
-
     categoryDiv.innerHTML = `
     <section class="todo">
       <div class="todo--category">
@@ -111,12 +135,12 @@ function updateCount() {
       }
     });
   });
-
-  console.log(`할 일 개수: ${willDoCount}, 완료 개수: ${doneCount}`);
-
   const gridTodo = document.querySelector(".grid-todo-today");
-  gridTodo.innerHTML = `${willDoCount}`; //할 일 카운터 화면에 띄우기
+  if (!gridTodo) return; // null 혹은 undefined 값이 반환될 경우 함수를 빠져나갑니다.
+  gridTodo.innerHTML = `${willDoCount}`;
 }
+
+document.addEventListener("click", changeStatus);
 
 //화면 초기화 시 렌더링 함수 init();(안하니까 초기 화면이 안뜸)
 function init() {
