@@ -6,6 +6,9 @@ export const GlobalStyles = createGlobalStyle`
   * {
     box-sizing : border-box;
   }
+  html {
+    font-size: 62.5%;
+  }
   body{
     font-family: 'Nanum Pen Script', cursive;
   }

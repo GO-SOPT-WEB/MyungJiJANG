@@ -1,5 +1,6 @@
 import "./App.css";
 import Header from "./component/Header";
+import CardBody from "./component/CardBody";
 
 function App() {
   //필요한 기능 1. 게임 난이도 선택
@@ -12,6 +13,7 @@ function App() {
   return (
     <>
       <Header />
+      <CardBody />
     </>
   );
 }
