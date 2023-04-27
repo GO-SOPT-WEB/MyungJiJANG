@@ -17,6 +17,6 @@
 |💛week1💛|**🖥웹 최적화에 대한 내 생각🖥️**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/3)|
 |💦week2💦|**🌱귀요미 저장소🌱**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/6)|
 |💦week2💦|**햄뿡-메이뚜💨**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/5)|
-|💦week2💦|****|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/4)|
+|💦week2💦|**🗂️React 프로젝트의 폴더구조에 대하여🗂️**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/4)|
 
 </div>
