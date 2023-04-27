@@ -15,6 +15,8 @@
 |💛week1💛|**🌱귀요미 저장소🌱**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/1)|
 |💛week1💛|**햄뿡-메이뚜💨**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/2)|
 |💛week1💛|**🖥웹 최적화에 대한 내 생각🖥️**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/3)|
+|💦week2💦|**🌱귀요미 저장소🌱**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/6)|
+|💦week2💦|**햄뿡-메이뚜💨**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/5)|
+|💦week2💦|****|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/4)|
 
 </div>
-
