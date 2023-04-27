@@ -1,4 +1,6 @@
 import { TODO_LIST } from "./TODO_LIST.js";
+let willDoCount = 0;
+let doneCount = 0;
 
 const categoryContainer = document.querySelector(".todo-category");
 
@@ -33,27 +35,17 @@ function changeStatus(event) {
   const categoryDiv = button.closest(".statusClick");
   if (newStatus === "done") {
     const todoListItems = categoryDiv.querySelectorAll(".todo--list");
-    todoListItems.forEach((item) => {
-      if (item.querySelector(".status").dataset.status === "done") {
-        doneCount++;
-        willDoCount--;
-      } else {
-        willDoCount++;
-      }
-    });
+    willDoCount--;
+    doneCount++;
   } else {
     const todoListItems = categoryDiv.querySelectorAll(".todo--list");
-    todoListItems.forEach((item) => {
-      if (item.querySelector(".status").dataset.status !== "done") {
-        willDoCount++;
-        doneCount--;
-      } else {
-        doneCount--;
-      }
-    });
+    willDoCount++;
+    doneCount--;
   }
-  updateCount();
-  console.log(newStatus);
+  const gridTodo = document.querySelector(".grid-todo-today");
+  if (!gridTodo) return; // null 혹은 undefined 값이 반환될 경우 함수를 빠져나갑니다.
+  gridTodo.innerHTML = `${willDoCount}`;
+  console.log(willDoCount);
 }
 
 // 카테고리 네임 & 카테고리 렌더 함수
@@ -123,17 +115,16 @@ function createModal(index) {
     todoListDiv.innerHTML = renderTasks(TODO_LIST[index].tasks);
 
     modal.style.display = "none";
-    updateCount();
+    willDoCount++;
+    const gridTodo = document.querySelector(".grid-todo-today");
+    if (!gridTodo) return; // null 혹은 undefined 값이 반환될 경우 함수를 빠져나갑니다.
+    gridTodo.innerHTML = `${willDoCount}`;
   });
-
   return modal;
 }
 
 //할 일 카운터 함수
 function updateCount() {
-  let willDoCount = 0;
-  let doneCount = 0;
-
   TODO_LIST.forEach((item) => {
     item.tasks.forEach((task) => {
       if (task.status === "done") {
