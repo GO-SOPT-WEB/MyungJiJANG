@@ -6,6 +6,8 @@ import styled from "styled-components";
 function CardBody() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
+  const [choiceOne, setChoiceOne] = useState(null);
+  const [choiceTwo, setChoiceTwo] = useState(null); // 아직 선택 받지 못한 상황이기에 null로!
 
   useEffect(() => {
     shuffleCards();
@@ -18,13 +20,20 @@ function CardBody() {
     setCards(easyMode);
     setTurns(0);
   };
-  console.log(cards, turns);
+
+  const handleCardChoice = (easy) => {
+    console.log(easy);
+  };
 
   return (
     <StCardContainer>
       <StCard>
         {cards.map((easy) => (
-          <EasyMode key={easy.id} easy={easy} />
+          <EasyMode
+            key={easy.id}
+            easy={easy}
+            handleCardChoice={handleCardChoice}
+          />
         ))}
       </StCard>
     </StCardContainer>
