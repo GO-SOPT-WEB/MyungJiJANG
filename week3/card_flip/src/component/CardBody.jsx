@@ -6,8 +6,8 @@ import styled from "styled-components";
 function CardBody() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
-  const [choiceOne, setChoiceOne] = useState(null);
-  const [choiceTwo, setChoiceTwo] = useState(null); // 아직 선택 받지 못한 상황이기에 null로!
+  const [firstChoice, setFirstChoice] = useState(null);
+  const [secondChoice, setSecondChoice] = useState(null); // 아직 선택 받지 못한 상황이기에 null로!
 
   useEffect(() => {
     shuffleCards();
@@ -22,7 +22,37 @@ function CardBody() {
   };
 
   const handleCardChoice = (easy) => {
-    console.log(easy);
+    if (firstChoice === null) {
+      setFirstChoice(easy);
+    } else if (secondChoice === null) {
+      setSecondChoice(easy);
+    }
+  };
+
+  // handleCardChoice 카드 일치하지 않음 오류 ! 해결하기 위한 콘솔 확인 코드
+  useEffect(() => {
+    console.log("firstChoice:", firstChoice);
+    console.log("secondChoice:", secondChoice);
+  }, [firstChoice, secondChoice]);
+
+  //카드 값 2개 비교하기 useEffect 사용
+  useEffect(() => {
+    if (firstChoice && secondChoice) {
+      if (firstChoice.image === secondChoice.image) {
+        console.log("카드 일치함");
+        resetTurn();
+      } else {
+        console.log("카드가 일치하지 않음");
+        resetTurn();
+      }
+    }
+  }, [firstChoice, secondChoice]);
+
+  //카드 선택을 초기화하고 순서를 증가시킨다.
+  const resetTurn = () => {
+    setFirstChoice(null);
+    setSecondChoice(null);
+    setTurns((prevTurns) => prevTurns + 1);
   };
 
   return (
