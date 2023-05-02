@@ -13,6 +13,7 @@ function CardBody() {
     shuffleCards();
   }, []);
 
+  //카드를 랜덤으로 섞고 이지모드인 5번째까지 자름
   const shuffleCards = () => {
     const easyMode = [...CARD_LIST.slice(0, 5), ...CARD_LIST.slice(0, 5)]
       .sort(() => Math.random() - 0.5)
@@ -21,6 +22,7 @@ function CardBody() {
     setTurns(0);
   };
 
+  //첫번째 카드와 두번째 카드 선택 체크 이벤트!
   const handleCardChoice = (easy) => {
     if (firstChoice === null) {
       setFirstChoice(easy);
@@ -39,14 +41,24 @@ function CardBody() {
   useEffect(() => {
     if (firstChoice && secondChoice) {
       if (firstChoice.image === secondChoice.image) {
-        console.log("카드 일치함");
+        //카드 리스트에 우선 matched : false로 해놓은 다음 , 첫번째 카드와 두번째 카드가 맞게 매칭되면 true로 바꿔주도록 함!
+        setCards((prevCards) => {
+          return prevCards.map((card) => {
+            if (card.image === firstChoice.image) {
+              return { ...card, matched: true };
+            } else {
+              return card;
+            }
+          });
+        });
         resetTurn();
       } else {
-        console.log("카드가 일치하지 않음");
-        resetTurn();
+        setTimeout(() => resetTurn(), 1000); // 초기화 전에 setTimeout를 걸어 약간의 지연시간을 둠!(아니면 초고속 뒤집힘)
       }
     }
   }, [firstChoice, secondChoice]);
+
+  console.log(cards);
 
   //카드 선택을 초기화하고 순서를 증가시킨다.
   const resetTurn = () => {
@@ -63,6 +75,9 @@ function CardBody() {
             key={easy.id}
             easy={easy}
             handleCardChoice={handleCardChoice}
+            flipped={
+              easy === firstChoice || easy === secondChoice || easy.matched
+            } // 카드가 뒤집히는 경우 => 1. 첫번째카드 고를때, 2. 두번째 카드 고를때, 3. 카드 두장이 일치할 때
           />
         ))}
       </StCard>
@@ -76,6 +91,7 @@ const StCard = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  gap: 0.5rem;
 `;
 
 const StCardContainer = styled.div`
