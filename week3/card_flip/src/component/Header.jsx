@@ -4,6 +4,7 @@ function Header() {
   return (
     <div>
       <StTitle>💸이거 맞추면 나 사주는 거다 ?💸</StTitle>
+
       <button>reset</button>
     </div>
   );

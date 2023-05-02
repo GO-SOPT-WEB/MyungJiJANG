@@ -2,9 +2,11 @@
 import GiftBox from "../../assets/GiftBox.png";
 import styled from "styled-components";
 
-function EasyMode({ easy, handleCardChoice, flipped }) {
+function EasyMode({ easy, handleCardChoice, flipped, disabled }) {
   const handleCardClick = () => {
-    handleCardChoice(easy);
+    if (!disabled) {
+      handleCardChoice(easy);
+    }
   };
   return (
     <StWrapper className="card">
@@ -20,6 +22,7 @@ function EasyMode({ easy, handleCardChoice, flipped }) {
           src={GiftBox}
           alt="카드 뒷면"
           onClick={handleCardClick}
+          style={{ transform: flipped ? "rotateY(90deg)" : "" }}
         />
       </StCardFlex>
     </StWrapper>
@@ -41,6 +44,8 @@ const StBackImage = styled.img`
   width: 20rem;
   height: 20rem;
   border: 0.3rem solid black; //theme 적용시키기
+  transition: all ease-in 0.2s;
+  transition-delay: 0s;
 `;
 
 const StFrontImage = styled.img`
@@ -49,4 +54,6 @@ const StFrontImage = styled.img`
   height: 20rem;
   border: 0.3rem solid black; //theme 적용시키기
   background-color: white; //theme 적용시키기
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
 `;

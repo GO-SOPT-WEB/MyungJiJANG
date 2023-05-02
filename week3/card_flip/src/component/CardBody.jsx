@@ -2,12 +2,14 @@ import { CARD_LIST } from "../constants/CARD_LIST";
 import EasyMode from "./CardBody/EasyMode";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import Score from "./CardBody/Score";
 
 function CardBody() {
   const [cards, setCards] = useState([]);
-  const [turns, setTurns] = useState(0);
   const [firstChoice, setFirstChoice] = useState(null);
   const [secondChoice, setSecondChoice] = useState(null); // 아직 선택 받지 못한 상황이기에 null로!
+  const [disabled, setDisabled] = useState(false);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     shuffleCards();
@@ -19,7 +21,7 @@ function CardBody() {
       .sort(() => Math.random() - 0.5)
       .map((easy) => ({ ...easy, id: Math.random() }));
     setCards(easyMode);
-    setTurns(0);
+    setScore(0);
   };
 
   //첫번째 카드와 두번째 카드 선택 체크 이벤트!
@@ -40,11 +42,13 @@ function CardBody() {
   //카드 값 2개 비교하기 useEffect 사용
   useEffect(() => {
     if (firstChoice && secondChoice) {
+      setDisabled(true);
       if (firstChoice.image === secondChoice.image) {
         //카드 리스트에 우선 matched : false로 해놓은 다음 , 첫번째 카드와 두번째 카드가 맞게 매칭되면 true로 바꿔주도록 함!
         setCards((prevCards) => {
           return prevCards.map((card) => {
             if (card.image === firstChoice.image) {
+              setScore(score + 1);
               return { ...card, matched: true };
             } else {
               return card;
@@ -60,28 +64,32 @@ function CardBody() {
 
   console.log(cards);
 
-  //카드 선택을 초기화하고 순서를 증가시킨다.
+  //카드 선택 초기화하기
   const resetTurn = () => {
     setFirstChoice(null);
     setSecondChoice(null);
-    setTurns((prevTurns) => prevTurns + 1);
+    setDisabled(false);
   };
 
   return (
-    <StCardContainer>
-      <StCard>
-        {cards.map((easy) => (
-          <EasyMode
-            key={easy.id}
-            easy={easy}
-            handleCardChoice={handleCardChoice}
-            flipped={
-              easy === firstChoice || easy === secondChoice || easy.matched
-            } // 카드가 뒤집히는 경우 => 1. 첫번째카드 고를때, 2. 두번째 카드 고를때, 3. 카드 두장이 일치할 때
-          />
-        ))}
-      </StCard>
-    </StCardContainer>
+    <>
+      <Score score={score} />
+      <StCardContainer>
+        <StCard>
+          {cards.map((easy) => (
+            <EasyMode
+              key={easy.id}
+              easy={easy}
+              handleCardChoice={handleCardChoice}
+              flipped={
+                easy === firstChoice || easy === secondChoice || easy.matched
+              } // 카드가 뒤집히는 경우 => 1. 첫번째카드 고를때, 2. 두번째 카드 고를때, 3. 카드 두장이 일치할 때
+              disabled={disabled}
+            />
+          ))}
+        </StCard>
+      </StCardContainer>
+    </>
   );
 }
 
