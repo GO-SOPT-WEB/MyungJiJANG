@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Score from "./Score";
 
-function HardMode() {
+function NormalMode() {
   const [cards, setCards] = useState([]);
   const [firstChoice, setFirstChoice] = useState(null);
   const [secondChoice, setSecondChoice] = useState(null); // 아직 선택 받지 못한 상황이기에 null로!
@@ -18,10 +18,10 @@ function HardMode() {
 
   //카드를 랜덤으로 섞고 이지모드인 5번째까지 자름
   const shuffleCards = () => {
-    const hardMode = [...CARD_LIST.slice(0, 9), ...CARD_LIST.slice(0, 9)]
+    const normalMode = [...CARD_LIST.slice(0, 7), ...CARD_LIST.slice(0, 7)]
       .sort(() => Math.random() - 0.5)
       .map((item) => ({ ...item, id: Math.random() }));
-    setCards(hardMode);
+    setCards(normalMode);
     setScore(0);
   };
 
@@ -94,7 +94,7 @@ function HardMode() {
   );
 }
 
-export default HardMode;
+export default NormalMode;
 
 const StCard = styled.div`
   display: flex;

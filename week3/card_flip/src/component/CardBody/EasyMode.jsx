@@ -1,59 +1,109 @@
 /* eslint-disable react/prop-types */
-import GiftBox from "../../assets/GiftBox.png";
+import { CARD_LIST } from "../../constants/CARD_LIST";
+import SingleCard from "./SingleCard";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+import Score from "./Score";
 
-function EasyMode({ easy, handleCardChoice, flipped, disabled }) {
-  const handleCardClick = () => {
-    if (!disabled) {
-      handleCardChoice(easy);
+function EasyMode() {
+  const [cards, setCards] = useState([]);
+  const [firstChoice, setFirstChoice] = useState(null);
+  const [secondChoice, setSecondChoice] = useState(null); // 아직 선택 받지 못한 상황이기에 null로!
+  const [disabled, setDisabled] = useState(false);
+  const [score, setScore] = useState(0);
+
+  useEffect(() => {
+    shuffleCards();
+  }, []);
+
+  //카드를 랜덤으로 섞고 이지모드인 5번째까지 자름
+  const shuffleCards = () => {
+    const easyMode = [...CARD_LIST.slice(0, 5), ...CARD_LIST.slice(0, 5)]
+      .sort(() => Math.random() - 0.5)
+      .map((item) => ({ ...item, id: Math.random() }));
+    setCards(easyMode);
+    setScore(0);
+  };
+
+  //첫번째 카드와 두번째 카드 선택 체크 이벤트!
+  const handleCardChoice = (item) => {
+    if (firstChoice === null) {
+      setFirstChoice(item);
+    } else if (secondChoice === null) {
+      setSecondChoice(item);
     }
   };
+
+  // handleCardChoice 카드 일치하지 않음 오류 ! 해결하기 위한 콘솔 확인 코드
+  useEffect(() => {
+    console.log("firstChoice:", firstChoice);
+    console.log("secondChoice:", secondChoice);
+  }, [firstChoice, secondChoice]);
+
+  //카드 값 2개 비교하기 useEffect 사용
+  useEffect(() => {
+    if (firstChoice && secondChoice) {
+      setDisabled(true);
+      if (firstChoice.image === secondChoice.image) {
+        //카드 리스트에 우선 matched : false로 해놓은 다음 , 첫번째 카드와 두번째 카드가 맞게 매칭되면 true로 바꿔주도록 함!
+        setCards((prevCards) => {
+          return prevCards.map((card) => {
+            if (card.image === firstChoice.image) {
+              setScore(score + 1);
+              return { ...card, matched: true };
+            } else {
+              return card;
+            }
+          });
+        });
+        resetTurn();
+      } else {
+        setTimeout(() => resetTurn(), 1000); // 초기화 전에 setTimeout를 걸어 약간의 지연시간을 둠!(아니면 초고속 뒤집힘)
+      }
+    }
+  }, [firstChoice, secondChoice]);
+
+  console.log(cards);
+
+  //카드 선택 초기화하기
+  const resetTurn = () => {
+    setFirstChoice(null);
+    setSecondChoice(null);
+    setDisabled(false);
+  };
+
   return (
-    <StWrapper className="card">
-      <StCardFlex>
-        <StFrontImage
-          className="front"
-          src={easy.image}
-          alt={easy.alt}
-          style={{ transform: flipped ? "rotateY(0deg)" : "rotateY(90deg)" }} // props로 flipped를 받아서 그 상태에 따라 로테이트 값을 바꿔준다!
-        />
-        <StBackImage
-          className="back"
-          src={GiftBox}
-          alt="카드 뒷면"
-          onClick={handleCardClick}
-          style={{ transform: flipped ? "rotateY(90deg)" : "" }}
-        />
-      </StCardFlex>
-    </StWrapper>
+    <>
+      <Score score={score} />
+      <StCardContainer>
+        <StCard>
+          {cards.map((item) => (
+            <SingleCard
+              key={item.id}
+              item={item}
+              handleCardChoice={handleCardChoice}
+              flipped={
+                item === firstChoice || item === secondChoice || item.matched
+              } // 카드가 뒤집히는 경우 => 1. 첫번째카드 고를때, 2. 두번째 카드 고를때, 3. 카드 두장이 일치할 때
+              disabled={disabled}
+            />
+          ))}
+        </StCard>
+      </StCardContainer>
+    </>
   );
 }
 
 export default EasyMode;
 
-const StWrapper = styled.div`
-  position: relative;
-`;
-
-const StCardFlex = styled.div`
+const StCard = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 0.5rem;
 `;
 
-const StBackImage = styled.img`
-  width: 20rem;
-  height: 20rem;
-  border: 0.3rem solid black; //theme 적용시키기
-  transition: all ease-in 0.2s;
-  transition-delay: 0s;
-`;
-
-const StFrontImage = styled.img`
-  position: absolute;
-  width: 20rem;
-  height: 20rem;
-  border: 0.3rem solid black; //theme 적용시키기
-  background-color: white; //theme 적용시키기
-  transition: all ease-in 0.2s;
-  transition-delay: 0.2s;
+const StCardContainer = styled.div`
+  display: flex;
+  flex-flow: column wrap;
 `;
