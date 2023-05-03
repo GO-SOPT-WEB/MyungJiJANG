@@ -1,14 +1,19 @@
 /* eslint-disable react/prop-types */
-
+import { useState } from "react";
 import ResetButton from "./Reset";
 import LevelBtn from "./CardBody/LevelBtn";
 
 function CardBody() {
-  const handleOnResetClick = () => {};
+  const [resetCounter, setResetCounter] = useState(0);
+
+  const handleResetClick = () => {
+    setResetCounter(resetCounter + 1);
+  };
+
   return (
     <div>
-      <LevelBtn />
-      <ResetButton onClick={handleOnResetClick} />
+      <LevelBtn resetCounter={resetCounter} />
+      <ResetButton onClick={handleResetClick} />
     </div>
   );
 }

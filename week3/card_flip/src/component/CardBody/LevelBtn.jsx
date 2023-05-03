@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import EasyMode from "./EasyMode";
 import NormalMode from "./NormalMode";
 import HardMode from "./HardMode";
 
-function LevelBtn() {
+function LevelBtn({ resetCounter }) {
   const [mode, setMode] = useState("easy");
 
   const handleLevelChange = (selectedMode) => {
@@ -13,16 +14,16 @@ function LevelBtn() {
   let selectedLevel;
   switch (mode) {
     case "easy":
-      selectedLevel = <EasyMode />;
+      selectedLevel = <EasyMode resetCounter={resetCounter} />;
       break;
     case "normal":
-      selectedLevel = <NormalMode />;
+      selectedLevel = <NormalMode resetCounter={resetCounter} />;
       break;
     case "hard":
-      selectedLevel = <HardMode />;
+      selectedLevel = <HardMode resetCounter={resetCounter} />;
       break;
     default:
-      selectedLevel = <EasyMode />;
+      selectedLevel = <EasyMode resetCounter={resetCounter} />;
   }
   return (
     <div>

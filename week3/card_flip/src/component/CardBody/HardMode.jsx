@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Score from "./Score";
 
-function HardMode() {
+function HardMode({ resetCounter }) {
   const [cards, setCards] = useState([]);
   const [firstChoice, setFirstChoice] = useState(null);
   const [secondChoice, setSecondChoice] = useState(null); // 아직 선택 받지 못한 상황이기에 null로!
@@ -14,7 +14,11 @@ function HardMode() {
 
   useEffect(() => {
     shuffleCards();
-  }, []);
+  }, [resetCounter]);
+
+  useEffect(() => {
+    resetTurn();
+  }, [resetCounter]);
 
   //카드를 랜덤으로 섞고 이지모드인 5번째까지 자름
   const shuffleCards = () => {
