@@ -5,8 +5,9 @@ export const GlobalStyles = createGlobalStyle`
   ${reset}
   * {
     box-sizing : border-box;
-    max-width: 86rem;
+    max-width: 100%;
     margin: 4rem auto;
+    background-color: ${(props) => props.theme.backBlue};
   }
   html {
     font-size: 62.5%;

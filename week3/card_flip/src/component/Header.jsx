@@ -11,5 +11,12 @@ function Header() {
 export default Header;
 
 const StTitle = styled.h1`
-  font-size: 4rem;
+  display: inline-block;
+  padding: 0.5rem 3rem;
+  font-family: ${(props) => props.theme.fontLogo};
+  font-weight: ${(props) => props.theme.WB};
+  font-size: ${(props) => props.theme.L};
+  border-radius: ${(props) => props.theme.L};
+  background-color: ${(props) => props.theme.whiteYellow};
+  color: ${(props) => props.theme.textRed};
 `;
