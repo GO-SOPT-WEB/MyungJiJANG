@@ -32,18 +32,33 @@ function LevelBtn({ resetCounter }) {
         <StButton
           className="easyMode"
           onClick={() => handleLevelChange("easy")}
+          style={
+            mode === "easy"
+              ? { backgroundColor: "#ead8bb", color: "#7d8473" }
+              : null
+          }
         >
           오다주웠다MODE
         </StButton>
         <StButton
           className="normalMode"
           onClick={() => handleLevelChange("normal")}
+          style={
+            mode === "normal"
+              ? { backgroundColor: "#74ab7e", color: "#e2eee4" }
+              : null
+          }
         >
           이쯤이야MODE
         </StButton>
         <StButton
           className="hardMode"
           onClick={() => handleLevelChange("hard")}
+          style={
+            mode === "hard"
+              ? { backgroundColor: "#eed18a", color: "#f4f3e4" }
+              : null
+          }
         >
           플-렉스MODE
         </StButton>
