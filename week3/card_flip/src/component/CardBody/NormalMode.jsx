@@ -17,7 +17,7 @@ function NormalMode({ resetCounter }) {
   const [animationTrigger, setAnimationTrigger] = useState(false);
 
   useEffect(() => {
-    if (score === 5) {
+    if (score === 7) {
       setIsGameOver(true);
     }
   }, [score]);

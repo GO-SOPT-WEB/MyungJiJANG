@@ -17,7 +17,7 @@ function HardMode({ resetCounter }) {
   const [animationTrigger, setAnimationTrigger] = useState(false);
 
   useEffect(() => {
-    if (score === 5) {
+    if (score === 9) {
       setIsGameOver(true);
     }
   }, [score]);
