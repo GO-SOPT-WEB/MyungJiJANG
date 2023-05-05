@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+//${(props) => props.theme.backBlue};
 
 export const theme = {
   mainYellow: "#eed18a",
@@ -23,6 +23,7 @@ export const theme = {
 
   coinYellow: "#f0e04a",
   coinYellowLine: "#d69f37",
+  coinWhite: "#ffffff",
 
   fontLogo: "font-family: 'Song Myung', serif",
 
@@ -36,11 +37,4 @@ export const theme = {
   WB: 900,
   WSB: 600,
   WR: 400,
-
-  absoluteCenter: css`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  `,
 };

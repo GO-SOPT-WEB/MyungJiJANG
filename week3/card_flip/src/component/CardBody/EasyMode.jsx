@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Score from "./Score";
 import Modal from "../Modal";
+import Animation from "./Animation";
 
 function EasyMode({ resetCounter }) {
   const [cards, setCards] = useState([]);
@@ -13,6 +14,7 @@ function EasyMode({ resetCounter }) {
   const [disabled, setDisabled] = useState(false);
   const [score, setScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [animationTrigger, setAnimationTrigger] = useState(false);
 
   useEffect(() => {
     if (score === 5) {
@@ -57,6 +59,7 @@ function EasyMode({ resetCounter }) {
           return prevCards.map((card) => {
             if (card.image === firstChoice.image) {
               setScore(score + 1);
+              setAnimationTrigger(true);
               return { ...card, matched: true };
             } else {
               return card;
@@ -70,7 +73,14 @@ function EasyMode({ resetCounter }) {
     }
   }, [firstChoice, secondChoice]);
 
-  console.log(cards);
+  useEffect(() => {
+    if (animationTrigger) {
+      const animationDuration = 2000;
+      setTimeout(() => {
+        setAnimationTrigger(false);
+      }, animationDuration);
+    }
+  }, [animationTrigger]);
 
   //카드 선택 초기화하기
   const resetTurn = () => {
@@ -111,14 +121,29 @@ function EasyMode({ resetCounter }) {
         <Modal isOpen={isGameOver} onClose={modalClose}>
           <h2>꼬마어 ~ 잘쓸겡 ~</h2>
           <p>돈 많이 벌어서 또 묜디 사줘야해 ~</p>
-          <button onClick={modalClose}>묜디 더 사주러가기</button>
+          <StModalButton onClick={modalClose}>
+            묜디
+            <br />더<br />
+            사주러가기
+          </StModalButton>
         </Modal>
       </StModal>
+      {animationTrigger && <Animation />}
     </>
   );
 }
 
 export default EasyMode;
+
+const StModalButton = styled.button`
+  padding: 1.5rem 1rem;
+  border: 0.8rem double ${(props) => props.theme.coinYellowLine};
+  border-radius: 5rem;
+  background-color: ${(props) => props.theme.coinYellow};
+  color: ${(props) => props.theme.textYellow};
+  white-space: pre-wrap;
+`;
+
 const StModal = styled.div`
   display: flex;
 `;
@@ -127,7 +152,9 @@ const StCard = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 3rem;
+  gap: 1rem;
 `;
 
 const StCardContainer = styled.div`

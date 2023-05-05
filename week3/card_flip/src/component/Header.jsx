@@ -14,7 +14,7 @@ const StTitle = styled.h1`
   display: inline-block;
   padding: 0.5rem 3rem;
   font-family: ${(props) => props.theme.fontLogo};
-  font-weight: ${(props) => props.theme.WB};
+  font-weight: ${(props) => props.theme.WSB};
   font-size: ${(props) => props.theme.L};
   border-radius: ${(props) => props.theme.L};
   background-color: ${(props) => props.theme.whiteYellow};

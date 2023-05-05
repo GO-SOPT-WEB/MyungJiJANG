@@ -24,7 +24,7 @@ const ModalOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); // theme
+  background-color: rgba(0, 0, 0, 0.5);
 `;
 
 const ModalContent = styled.div`
@@ -34,9 +34,11 @@ const ModalContent = styled.div`
   flex-direction: column;
   width: 50rem;
   height: 30rem;
-  background-color: white; // theme
   padding: 2rem;
   border-radius: 0.4rem;
+  background-color: ${(props) => props.theme.whiteYellow};
+  font-size: ${(props) => props.theme.M};
+  font-weight: ${(props) => props.theme.WSB};
 `;
 
 export default Modal;

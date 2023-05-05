@@ -4,6 +4,8 @@ import SingleCard from "./SingleCard";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Score from "./Score";
+import Modal from "../Modal";
+import Animation from "./Animation";
 
 function NormalMode({ resetCounter }) {
   const [cards, setCards] = useState([]);
@@ -11,6 +13,14 @@ function NormalMode({ resetCounter }) {
   const [secondChoice, setSecondChoice] = useState(null); // 아직 선택 받지 못한 상황이기에 null로!
   const [disabled, setDisabled] = useState(false);
   const [score, setScore] = useState(0);
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [animationTrigger, setAnimationTrigger] = useState(false);
+
+  useEffect(() => {
+    if (score === 5) {
+      setIsGameOver(true);
+    }
+  }, [score]);
 
   useEffect(() => {
     shuffleCards();
@@ -20,7 +30,6 @@ function NormalMode({ resetCounter }) {
     resetTurn();
   }, [resetCounter]);
 
-  //카드를 랜덤으로 섞고 이지모드인 5번째까지 자름
   const shuffleCards = () => {
     const normalMode = [...CARD_LIST.slice(0, 7), ...CARD_LIST.slice(0, 7)]
       .sort(() => Math.random() - 0.5)
@@ -38,12 +47,6 @@ function NormalMode({ resetCounter }) {
     }
   };
 
-  // handleCardChoice 카드 일치하지 않음 오류 ! 해결하기 위한 콘솔 확인 코드
-  useEffect(() => {
-    console.log("firstChoice:", firstChoice);
-    console.log("secondChoice:", secondChoice);
-  }, [firstChoice, secondChoice]);
-
   //카드 값 2개 비교하기 useEffect 사용
   useEffect(() => {
     if (firstChoice && secondChoice) {
@@ -54,6 +57,7 @@ function NormalMode({ resetCounter }) {
           return prevCards.map((card) => {
             if (card.image === firstChoice.image) {
               setScore(score + 1);
+              setAnimationTrigger(true);
               return { ...card, matched: true };
             } else {
               return card;
@@ -67,13 +71,30 @@ function NormalMode({ resetCounter }) {
     }
   }, [firstChoice, secondChoice]);
 
-  console.log(cards);
+  useEffect(() => {
+    if (animationTrigger) {
+      const animationDuration = 2000;
+      setTimeout(() => {
+        setAnimationTrigger(false);
+      }, animationDuration);
+    }
+  }, [animationTrigger]);
 
   //카드 선택 초기화하기
   const resetTurn = () => {
     setFirstChoice(null);
     setSecondChoice(null);
     setDisabled(false);
+  };
+
+  const modalClose = () => {
+    setIsGameOver(false);
+    setCards([]);
+    setFirstChoice(null);
+    setSecondChoice(null);
+    setDisabled(false);
+    setScore(0);
+    shuffleCards();
   };
 
   return (
@@ -94,17 +115,44 @@ function NormalMode({ resetCounter }) {
           ))}
         </StCard>
       </StCardContainer>
+      <StModal>
+        <Modal isOpen={isGameOver} onClose={modalClose}>
+          <h2>대바기다 지짜! ~ 잘쓸겡 ~</h2>
+          <p>돈 많이 벌어서 또 묜디 사줘야해 ~</p>
+          <StModalButton onClick={modalClose}>
+            묜디
+            <br />더<br />
+            사주러가기
+          </StModalButton>
+        </Modal>
+      </StModal>
+      {animationTrigger && <Animation />}
     </>
   );
 }
 
 export default NormalMode;
 
+const StModalButton = styled.button`
+  padding: 1.5rem 1rem;
+  border: 0.8rem double ${(props) => props.theme.coinYellowLine};
+  border-radius: 5rem;
+  background-color: ${(props) => props.theme.coinYellow};
+  color: ${(props) => props.theme.textYellow};
+  white-space: pre-wrap;
+`;
+
+const StModal = styled.div`
+  display: flex;
+`;
+
 const StCard = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-top: 3rem;
 `;
 
 const StCardContainer = styled.div`

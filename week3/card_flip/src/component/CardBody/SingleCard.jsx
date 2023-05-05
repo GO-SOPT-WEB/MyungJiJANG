@@ -9,7 +9,7 @@ function SingleCard({ item, handleCardChoice, flipped, disabled }) {
     }
   };
   return (
-    <StWrapper className="card">
+    <StWrapper>
       <StCardFlex>
         <StFrontImage
           className="front"
@@ -22,7 +22,7 @@ function SingleCard({ item, handleCardChoice, flipped, disabled }) {
           src={GiftBox}
           alt="카드 뒷면"
           onClick={handleCardClick}
-          style={{ transform: flipped ? "rotateY(90deg)" : "" }}
+          style={{ transform: flipped ? "rotateY(90deg)" : "rotateY(0deg)" }}
         />
       </StCardFlex>
     </StWrapper>
@@ -43,7 +43,6 @@ const StCardFlex = styled.div`
 const StBackImage = styled.img`
   width: 20rem;
   height: 20rem;
-  border: 0.3rem solid black; //theme 적용시키기
   transition: all ease-in 0.2s;
   transition-delay: 0s;
 `;
@@ -52,8 +51,7 @@ const StFrontImage = styled.img`
   position: absolute;
   width: 20rem;
   height: 20rem;
-  border: 0.3rem solid black; //theme 적용시키기
-  background-color: white; //theme 적용시키기
+  background-color: ${(props) => props.theme.coinWhite};
   transition: all ease-in 0.2s;
   transition-delay: 0.2s;
 `;
