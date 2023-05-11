@@ -1,11 +1,5 @@
-import DayWeatherCard from "../components/WeatherCard";
-
 function Home() {
-  return (
-    <div>
-      <DayWeatherCard area="Seoul" />
-    </div>
-  );
+  return <div></div>;
 }
 
 export default Home;

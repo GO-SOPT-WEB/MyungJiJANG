@@ -1,6 +1,11 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
-// import { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "../../node_modules/axios/index";
+import { WEATHER_TYPE } from "../constants/weather";
 
 //자 검색 페이지
 //1. 전송 시킬때 페이지 전환-> day/:area 또는 week/:area
@@ -8,20 +13,68 @@ import styled from "styled-components";
 //3. 검색 텍스트 url로 넘겨서 해당 데이터가 뜨도록 해야함.
 
 function SearchForm() {
+  const navigate = useNavigate();
+  const [area, setArea] = useState("");
+  const [selectedOption, setSelectedOption] = useState("day"); // 선택한 옵션 상태 추가
+  const [result, setResult] = useState({}); // 결과 값이 넣어져 있을때 => 검색한 도시에 대한 날씨 정보 출력
+  const [imgUrl, setImgUrl] = useState("");
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      let apiUrl;
+      if (selectedOption === "week") {
+        apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${area}&appid=${
+          import.meta.env.VITE_APP_WEATHER
+        }&units=metric`;
+      } else {
+        apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${area}&appid=${
+          import.meta.env.VITE_APP_WEATHER
+        }&units=metric`;
+      }
+      const response = await axios.get(apiUrl);
+      const data = response.data;
+      setResult(data);
+      let img = "";
+      if (data && data.weather && data.weather.length > 0) {
+        for (let i = 0; i < WEATHER_TYPE.length; i++) {
+          if (WEATHER_TYPE[i].description === data.weather[0].description) {
+            img = WEATHER_TYPE[i].imgURL;
+            break;
+          }
+        }
+      }
+      setImgUrl(img);
+      navigate(`/${selectedOption.toLowerCase()}/${area}`, {
+        state: { result: data, imgUrl },
+      });
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+      setResult({});
+      setImgUrl("");
+    }
+  };
+
   return (
     <StWrapper>
-      <form action="#">
-        <select name="date">
-          <option value="">오늘</option>
-          <option value="학생">주간</option>
+      <form action="#" onSubmit={handleOnSubmit}>
+        <select
+          name="date"
+          value={selectedOption}
+          onChange={(e) => setSelectedOption(e.target.value)}
+        >
+          <option value="day">day</option>
+          <option value="week">week</option>
         </select>
         <input
           type="text"
           name="area"
-          value=""
+          value={area}
+          onChange={(e) => setArea(e.target.value)}
           placeholder="Please Write in English. ➡️ suwon"
         />
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" onClick={handleOnSubmit} />
       </form>
     </StWrapper>
   );
