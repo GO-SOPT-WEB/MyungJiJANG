@@ -67,14 +67,14 @@ function SearchForm() {
           <option value="day">day</option>
           <option value="week">week</option>
         </select>
-        <input
+        <StSearchForm
           type="text"
           name="area"
           value={area}
           onChange={(e) => setArea(e.target.value)}
           placeholder="Please Write in English. ➡️ suwon"
         />
-        <input type="submit" value="Submit" onClick={handleOnSubmit} />
+        <StSubmitForm type="submit" value="Submit" onClick={handleOnSubmit} />
       </form>
     </StWrapper>
   );
@@ -82,6 +82,28 @@ function SearchForm() {
 
 export default SearchForm;
 
+const StSubmitForm = styled.input`
+  width: 4rem;
+  height: 2rem;
+  border: 0.1rem solid black;
+  border-radius: 0.3rem;
+  background-color: #d1d1d1;
+  color: #343434;
+`;
+
+const StSearchForm = styled.input`
+  width: 14rem;
+  height: 2rem;
+  border: 0.1rem solid black;
+  border-radius: 1rem;
+  background-color: #d1d1d1;
+  color: #343434;
+`;
+
 const StWrapper = styled.div`
   margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
 `;
