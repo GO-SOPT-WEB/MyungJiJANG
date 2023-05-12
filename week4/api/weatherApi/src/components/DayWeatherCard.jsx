@@ -10,12 +10,13 @@ function DayWeatherCard({ result, imgUrl }) {
         <StCard>
           <StText className="title">{result.name}</StText>
           <StImage src={imgUrl} alt={result.weather[0].description} />
-          <StText>TEMP🌡️: {result.main.temp}</StText>
-          <StText>FEELS_LIKE🥶: {result.main.feels_like}</StText>
+          <StText>TEMP🌡️: {result.main.temp} &#x2103;</StText>
+          <StText>FEELS_LIKE🥶: {result.main.feels_like} &#x2103;</StText>
           <StText>
-            MIN👎/MAX_TEMP👍:{result.main.temp_min}/{result.main.temp_max}
+            MIN👎/MAX_TEMP👍:{result.main.temp_min} &#x2103;/
+            {result.main.temp_max} &#x2103;
           </StText>
-          <StText>CLOUDS☁️: {result.clouds.all}</StText>
+          <StText>CLOUDS☁️: {result.clouds.all} %</StText>
         </StCard>
       )}
     </StWeather>

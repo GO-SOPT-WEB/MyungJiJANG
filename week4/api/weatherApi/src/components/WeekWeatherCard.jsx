@@ -28,13 +28,13 @@ function WeekWeatherCard({ result }) {
             {weekResult.weather && weekResult.weather[0] && (
               <StImage src={imgUrl} alt={weekResult.weather[0].description} />
             )}
-            <StText>TEMP🌡️: {weekResult.main.temp}</StText>
-            <StText>FEELS_LIKE🥶: {weekResult.main.feels_like}</StText>
+            <StText>TEMP🌡️: {weekResult.main.temp} &#x2103;</StText>
+            <StText>FEELS_LIKE🥶: {weekResult.main.feels_like} &#x2103;</StText>
             <StText>
-              MIN👎/MAX_TEMP👍: {weekResult.main.temp_min}/
-              {weekResult.main.temp_max}
+              MIN👎/MAX_TEMP👍: {weekResult.main.temp_min} &#x2103;/
+              {weekResult.main.temp_max} &#x2103;
             </StText>
-            <StText>CLOUDS☁️: {weekResult.clouds.all}</StText>
+            <StText>CLOUDS☁️: {weekResult.clouds.all} %</StText>
           </StCardList>
         );
       })}
@@ -45,7 +45,7 @@ function WeekWeatherCard({ result }) {
 export default WeekWeatherCard;
 
 const StText = styled.div`
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-top: 0.5rem;
 `;
 
