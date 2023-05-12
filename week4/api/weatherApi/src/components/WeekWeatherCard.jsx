@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 //주간 날씨 확인List
 import styled from "styled-components";
+import { WEATHER_TYPE } from "../constants/weather";
 
-function WeekWeatherCard({ result, imgUrl }) {
+function WeekWeatherCard({ result }) {
   console.log(result);
   const dateOptions = { month: "numeric", day: "numeric" };
 
@@ -15,28 +16,35 @@ function WeekWeatherCard({ result, imgUrl }) {
   });
   return (
     <StWeatherList>
-      {result.list.slice(0, 5).map((weekResult, index) => (
-        <StCardList key={index}>
-          <StText className="date">{dateList[index]}</StText>
-          {weekResult.weather && weekResult.weather[0] && (
-            <StImage src={imgUrl} alt={weekResult.weather[0].description} />
-          )}
-          <StText>TEMP🌡️: {weekResult.main.temp}</StText>
-          <StText>FEELS_LIKE🥶: {weekResult.main.feels_like}</StText>
-          <StText>
-            MIN👎/MAX_TEMP👍: {weekResult.main.temp_min}/
-            {weekResult.main.temp_max}
-          </StText>
-          <StText>CLOUDS☁️: {weekResult.clouds.all}</StText>
-        </StCardList>
-      ))}
+      {result.list.slice(0, 5).map((weekResult, index) => {
+        const matchingWeatherType = WEATHER_TYPE.find((weatherType) => {
+          return weatherType.description === weekResult.weather[0].description;
+        });
+        const imgUrl = matchingWeatherType ? matchingWeatherType.imgURL : "";
+
+        return (
+          <StCardList key={index}>
+            <StText className="date">{dateList[index]}</StText>
+            {weekResult.weather && weekResult.weather[0] && (
+              <StImage src={imgUrl} alt={weekResult.weather[0].description} />
+            )}
+            <StText>TEMP🌡️: {weekResult.main.temp}</StText>
+            <StText>FEELS_LIKE🥶: {weekResult.main.feels_like}</StText>
+            <StText>
+              MIN👎/MAX_TEMP👍: {weekResult.main.temp_min}/
+              {weekResult.main.temp_max}
+            </StText>
+            <StText>CLOUDS☁️: {weekResult.clouds.all}</StText>
+          </StCardList>
+        );
+      })}
     </StWeatherList>
   );
 }
 
 export default WeekWeatherCard;
 
-const StText = styled.p`
+const StText = styled.div`
   font-size: 1rem;
   margin-top: 0.5rem;
 `;

@@ -10,12 +10,12 @@ function DayWeatherCard({ result, imgUrl }) {
         <StCard>
           <StText className="title">{result.name}</StText>
           <StImage src={imgUrl} alt={result.weather[0].description} />
-          <StText>온도: {result.main.temp}</StText>
-          <StText>체감온도: {result.main.feels_like}</StText>
+          <StText>TEMP🌡️: {result.main.temp}</StText>
+          <StText>FEELS_LIKE🥶: {result.main.feels_like}</StText>
           <StText>
-            최저/최고 기온:{result.main.temp_min}/{result.main.temp_max}
+            MIN👎/MAX_TEMP👍:{result.main.temp_min}/{result.main.temp_max}
           </StText>
-          <StText>구름: {result.clouds.all}</StText>
+          <StText>CLOUDS☁️: {result.clouds.all}</StText>
         </StCard>
       )}
     </StWeather>
@@ -23,7 +23,7 @@ function DayWeatherCard({ result, imgUrl }) {
 }
 
 export default DayWeatherCard;
-const StText = styled.p`
+const StText = styled.div`
   font-size: 1rem;
   margin-top: 0.5rem;
 `;

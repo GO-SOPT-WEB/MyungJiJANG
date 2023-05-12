@@ -37,11 +37,13 @@ function SearchForm() {
       setResult(data);
       let img = "";
       if (data && data.weather && data.weather.length > 0) {
-        for (let i = 0; i < WEATHER_TYPE.length; i++) {
-          if (WEATHER_TYPE[i].description === data.weather[0].description) {
-            img = WEATHER_TYPE[i].imgURL;
-            break;
-          }
+        const matchingWeatherType = WEATHER_TYPE.find((weatherType) => {
+          return weatherType.description === data.weather[0].description;
+        });
+
+        if (matchingWeatherType) {
+          img = matchingWeatherType.imgURL;
+          console.log(img);
         }
       }
       setImgUrl(img);
