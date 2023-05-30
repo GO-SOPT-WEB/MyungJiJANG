@@ -1,7 +1,9 @@
+import Header from "./components/Header";
+
 function App() {
   return (
     <>
-      <p>가나다</p>
+      <Header />
     </>
   );
 }
