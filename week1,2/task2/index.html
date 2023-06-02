@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;200;300;400;500;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="script.js"></script>
+    <script type="module" src="TODO_LIST.js"></script>
+
+    <title>투 두 메이트</title>
+  </head>
+  <body>
+    <header>
+      <h1>햄뿡-메이뚜</h1>
+      <p>오늘은 무엇을 할까뿡💨</p>
+    </header>
+
+    <main>
+      <section class="calender">
+        <div class="grid--container">
+          <div class="grid-day">일</div>
+          <div class="grid-day">월</div>
+          <div class="grid-day">화</div>
+          <div class="grid-day">수</div>
+          <div class="grid-day">목</div>
+          <div class="grid-day">금</div>
+          <div class="grid-day">토</div>
+          <div class="grid-todo">1</div>
+          <div class="grid-todo">0</div>
+          <div class="grid-todo">1</div>
+          <div class="grid-todo">0</div>
+          <div class="grid-todo">2</div>
+          <div class="grid-todo">3</div>
+          <div class="grid-todo-today"></div>
+          <div class="gird-date">2</div>
+          <div class="gird-date">3</div>
+          <div class="gird-date">4</div>
+          <div class="gird-date">5</div>
+          <div class="gird-date">6</div>
+          <div class="gird-date">7</div>
+          <div class="gird-date">8</div>
+        </div>
+      </section>
+
+      <section class="info">
+        <div class="use-direction">
+          <h4>💨햄뿡-메이뚜💨사용법</h4>
+          <div class="detail">
+            <p>✅ 한 일은 <span>"애교뿡!"</span>의 &nbsp;</p>
+            <p><span class="heart">❤️‍🔥</span>로!</p>
+          </div>
+          <div class="detail">
+            <p>✅ 아직 하지 못한 일은 <span>"게을뿡!"</span>의 &nbsp;</p>
+            <p><span class="heart">🤍</span>로!</p>
+          </div>
+          <span>체크 해주세요!</span>
+        </div>
+      </section>
+
+      <section class="todo">
+        <div class="todo-category">
+          <div class="todo--list" id="add--todo"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="calender--button" onClick="location.href='mycategory.html'">
+        <img src="./img2/CalHambbung.png" alt="달력 버튼 아이콘" width="50px" />
+        <p>깰린뎌</p>
+      </div>
+      <div class="mypage-button" onClick="location.href='mycategory.html'">
+        <img
+          src="./img2/MyHambbung.png"
+          alt="마이페이지 버튼 아이콘"
+          width="50px"
+        />
+        <p>마이</p>
+      </div>
+    </footer>
+  </body>
+</html>
