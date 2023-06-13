@@ -22,4 +22,6 @@ export const COLOR = {
   coinYellow: "#f0e04a",
   coinYellowLine: "#d69f37",
   coinWhite: "#ffffff",
+
+  opacityBlack: "#0000007f",
 };
