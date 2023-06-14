@@ -47,7 +47,6 @@ export default function GameMode({ mode, resetCounter }: GameModeProps) {
   const setScore = useSetRecoilState(scoreState);
   const setIsGameOver = useSetRecoilState(isGameOverState);
   const setAnimationTrigger = useSetRecoilState(animationTriggerState);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const config: ModeConfig = MODE_CONFIG[mode];
 
@@ -77,6 +76,7 @@ export default function GameMode({ mode, resetCounter }: GameModeProps) {
       setSecondChoice(item);
     }
   };
+
   function resetTurn() {
     setFirstChoice(null);
     setSecondChoice(null);
@@ -98,11 +98,13 @@ export default function GameMode({ mode, resetCounter }: GameModeProps) {
             });
           });
           setScore((prevScore) => prevScore + 1);
+          setAnimationTrigger(true);
           resetTurn();
         }, 1000);
       } else {
         // 일치하지 않는 경우
         setTimeout(() => {
+          setAnimationTrigger(false);
           resetTurn();
         }, 1000);
       }
@@ -111,13 +113,19 @@ export default function GameMode({ mode, resetCounter }: GameModeProps) {
 
   useEffect(() => {
     console.log("모달 왜 안열리냐아아아아아아아아아아아아아ㅏ앙아아");
-    if (isGameOver && score === config.scoreGoal) {
-      setIsModalOpen(true);
+    if (score === config.scoreGoal) {
+      setIsGameOver(true);
     }
-  }, [isGameOver, score, config.scoreGoal]);
+  }, [score, config.scoreGoal, setIsGameOver]);
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    setIsGameOver(false);
+    setCards([]);
+    setFirstChoice(null);
+    setSecondChoice(null);
+    setDisabled(false);
+    setScore(0);
+    shuffleCards();
   };
 
   return (
@@ -140,27 +148,16 @@ export default function GameMode({ mode, resetCounter }: GameModeProps) {
       </StCardContainer>
       <>
         {/* Modal 컴포넌트 */}
-        {isGameOver && (
-          <Modal isOpen={isModalOpen} onClose={closeModal}>
-            {/* 모달 내용 */}
-            <h2>Modal Title</h2>
-            <p>Modal content goes here.</p>
-          </Modal>
-        )}
+
+        <Modal isOpen={isGameOver} onClose={closeModal}>
+          <h2>꼬마어 ~ 잘쓸겡 ~</h2>
+          <p>돈 많이 벌어서 또 묜디 사줘야해 ~</p>
+        </Modal>
       </>
       {animationTrigger && <Animation />}
     </div>
   );
 }
-
-const StModalButton = styled.div`
-  padding: 1.5rem 1rem;
-  border: 0.8rem double ${COLOR.coinYellowLine};
-  border-radius: 5rem;
-  background-color: ${COLOR.coinYellow};
-  color: ${COLOR.textYellow};
-  white-space: pre-wrap;
-`;
 
 const StCardContainer = styled.div`
   display: flex;

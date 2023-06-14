@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { COLOR } from "../styles/color";
 
 interface ModalProps {
   isOpen: boolean;
@@ -6,20 +7,26 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
-const ModalContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-`;
+const Modal = ({ isOpen, onClose, children }: ModalProps) => {
+  if (!isOpen) return null;
+
+  return (
+    <ModalOverlay onClick={onClose}>
+      <ModalContent>
+        {children}
+        <button onClick={onClose}>X</button>
+      </ModalContent>
+    </ModalOverlay>
+  );
+};
+
+export default Modal;
 
 const ModalOverlay = styled.div`
-  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -28,23 +35,15 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50rem;
+  height: 30rem;
   padding: 2rem;
-  border-radius: 4px;
+  border-radius: 0.4rem;
+  background-color: ${COLOR.whiteYellow};
+  font-size: 2rem;
+  font-weight: 2.2rem;
 `;
-
-const Modal = ({ isOpen, onClose, children }: ModalProps) => {
-  if (!isOpen) return null;
-
-  return (
-    <ModalContainer>
-      <ModalOverlay onClick={onClose} />
-      <ModalContent>
-        {children}
-        <button onClick={onClose}>Close Modal</button>
-      </ModalContent>
-    </ModalContainer>
-  );
-};
-
-export default Modal;
