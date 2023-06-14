@@ -14,10 +14,9 @@ import {
   animationTriggerState,
 } from "../../recoil/cardList/atoms";
 import { MODE_CONFIG, ModeConfig } from "../../config/modeConfig";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { CARD_LIST } from "../../constants/CARD_LIST";
 import SingleCard from "./SingleCard";
-import { COLOR } from "../../styles/color";
 
 export interface Card {
   id: number;
@@ -112,7 +111,6 @@ export default function GameMode({ mode, resetCounter }: GameModeProps) {
   }, [firstChoice, secondChoice]);
 
   useEffect(() => {
-    console.log("모달 왜 안열리냐아아아아아아아아아아아아아ㅏ앙아아");
     if (score === config.scoreGoal) {
       setIsGameOver(true);
     }
