@@ -16,6 +16,8 @@
       href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;700&family=IBM+Plex+Sans+KR:wght@500&display=swap"
       rel="stylesheet"
     />
+    <script type="module" src="script.js"></script>
+    <script type="module" src="CUTE_ITEM_LIST.js"></script>
     <title>귀요미 저장소</title>
   </head>
   <body>
@@ -28,8 +30,10 @@
             <i class="fa-solid fa-bars fa-3x"> </i>
             <div class="right--category__list">
               <h2>메뉴</h2>
-              <p>뉴 귀요미 추가</p>
-              <p>찜한 목록</p>
+              <ul>
+                <li>뉴 귀요미 추가</li>
+                <li>찜한 목록</li>
+              </ul>
             </div>
           </div>
         </nav>
@@ -41,136 +45,61 @@
       <!--nav-->
       <nav class="nav--left">
         <h3>어떤 귀요미를 볼까?</h3>
-        <div class="container">
-          <div class="category--list">
+        <div class="nav--left__container">
+          <ul>
             <i class="fa-solid fa-hand-holding-heart"></i>
-            <button>전체</button>
-          </div>
+            <input
+              type="button"
+              id="category-all"
+              class="category-all"
+              value="전체"
+            />
+          </ul>
 
-          <div class="category--list">
+          <ul>
             <i class="fa-solid fa-paw"></i>
-            <button>강아지</button>
-          </div>
+            <input
+              type="button"
+              id="category-dog"
+              class="category-dog"
+              value="강아지"
+            />
+          </ul>
 
-          <div class="category--list">
+          <ul>
             <i class="fa-solid fa-cat"></i>
-            <button>고양이</button>
-          </div>
+            <input
+              type="button"
+              id="category-cat"
+              class="category-cat"
+              value="고양이"
+            />
+          </ul>
 
-          <div class="category--list">
+          <ul>
             <i class="fa-solid fa-face-smile"></i>
-            <button>기타</button>
+            <input
+              type="button"
+              id="category-etc"
+              class="category-etc"
+              value="기타"
+            />
+          </ul>
+          <div class="nav--tag__container">
+            <button type="button" id="text--all" class="text--all"></button>
+            <button type="button" id="text--dog" class="text--dog"></button>
+            <button type="button" id="text--cat" class="text--cat"></button>
+            <button type="button" id="text--etc" class="text--etc"></button>
           </div>
         </div>
       </nav>
 
       <!--section-->
       <section class="card--section">
-        <div class="container">
-          <div class="card--list">
-            <div class="card--inner">
-              <h3>봉지</h3>
-              <div class="hashtag">
-                <p>#말티피그 #장봉지 #말티즈 #7짤</p>
-                <button>+</button>
-              </div>
-              <img src="img/Bongji.jpg" alt="봉지 이미지" />
-              <div class="card--inner__footer">♥</div>
-            </div>
-
-            <div class="card--inner">
-              <h3>밤비</h3>
-              <div class="hashtag">
-                <p>#꼬똥 #3짤 #고창석 #ㄱㅇㅇ💛</p>
-                <button>+</button>
-              </div>
-              <img src="img/Bambi.jpg" alt="밤비 이미지" />
-              <div class="card--inner__footer">♥</div>
-            </div>
-
-            <div class="card--inner">
-              <h3>후지</h3>
-              <div class="hashtag">
-                <p>#비숑 #강후지 #훚</p>
-                <button>+</button>
-              </div>
-              <img src="img/Huji.jpg" alt="후지 이미지" />
-              <div class="card--inner__footer">♥</div>
-            </div>
-
-            <div class="card--inner">
-              <h3>고영희 짤</h3>
-              <div class="hashtag">
-                <p>#고얌이 #냥아치다 #ㄱㅇㅇ💛</p>
-                <button>+</button>
-              </div>
-              <img src="img/Cat.JPG" alt="고양이 이미지" />
-              <div class="card--inner__footer">♥</div>
-            </div>
-
-            <div class="card--inner">
-              <h3>행복한 쿼카</h3>
-              <div class="hashtag">
-                <p>#셀카장인 #스마일 #호주</p>
-                <button>+</button>
-              </div>
-              <img src="img/Happy.jpg" alt="쿼카 이미지" />
-              <div class="card--inner__footer">♥</div>
-            </div>
-
-            <div class="card--inner">
-              <h3>춘식이</h3>
-              <div class="hashtag">
-                <p>#카카오프렌즈 춘식 #따땃</p>
-                <button>+</button>
-              </div>
-              <img src="img/Chunsic.jpg" alt="춘식이 이미지" />
-              <div class="card--inner__footer">♥</div>
-            </div>
-
-            <div class="card--inner">
-              <h3>햄뿡이</h3>
-              <div class="hashtag">
-                <p>#햄뿡이 #방구뿡뿡 #내취향</p>
-                <button>+</button>
-              </div>
-              <img src="img/Hambbung.jpg" alt="햄뿡이 이미지" />
-              <div class="card--inner__footer">♥</div>
-            </div>
-
-            <div class="card--inner">
-              <h3>최고심</h3>
-              <div class="hashtag">
-                <p>#할뚜이따 #긍정!!! #체고</p>
-                <button>+</button>
-              </div>
-              <img src="img/Gosim.JPG" alt="최고심 이미지" />
-              <div class="card--inner__footer">♥</div>
-            </div>
-
-            <div class="card--inner">
-              <h3>명지</h3>
-              <div class="hashtag">
-                <p>#_myundi #귀욤짱 #25짤</p>
-                <button>+</button>
-              </div>
-              <img src="img/Myungji.jpg" alt="명지 이미지" />
-              <div class="card--inner__footer">♥</div>
-            </div>
-
-            <div class="card--inner">
-              <h3>햄찌짤</h3>
-              <div class="card--inner__body"></div>
-              <div class="hashtag">
-                <p>#햄스터>< #따봉짤 #최애짤</p>
-                <button>+</button>
-              </div>
-              <img src="img/Hamjji.JPG" alt="햄스터 이미지" />
-              <div class="card--inner__footer">♥</div>
-            </div>
-          </div>
-        </div>
+        <div class="card--list" id="modal--card"></div>
       </section>
     </div>
+
+    <!--모달-->
   </body>
 </html>
