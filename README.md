@@ -10,10 +10,14 @@
 
 <div align=center>
 
-| 주차      | 과제 내용                       | 링크                                                        |
-| --------- | ------------------------------- | ----------------------------------------------------------- |
-| 💛week1💛 | **🌱귀요미 저장소🌱**           | [🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/1) |
-| 💛week1💛 | **햄뿡-메이뚜💨**               | [🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/2) |
-| 💛week1💛 | **🖥웹 최적화에 대한 내 생각🖥️** | [🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/3) |
-
+  |주차|과제 내용|링크|
+|------|---|---|
+|💛week1💛|**🌱귀요미 저장소🌱**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/1)|
+|💛week1💛|**햄뿡-메이뚜💨**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/2)|
+|💛week1💛|**🖥웹 최적화에 대한 내 생각🖥️**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/3)|
+|💦week2💦|**🌱귀요미 저장소[+js]🌱**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/6)|
+|💦week2💦|**햄뿡-메이뚜💨[+js]**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/5)|
+|💦week2💦|**🗂️React 프로젝트의 폴더구조에 대하여🗂️**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/4)|
+|💸week3💸|**💰묜디 선물상자(몰티즈를 찾아라)💰**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/7)|
+|💸week3💸|**❓리액트에서 상태관리는 왜 필요한가?**|[🔗링꾸](https://github.com/GO-SOPT-WEB/MyungJiJANG/pull/8)|
 </div>
