@@ -1,7 +1,6 @@
 * {
   max-width: 390px;
   max-height: 844px;
-  overflow: visible;
   font-family: "Hahmlet", serif;
 }
 header {
@@ -25,7 +24,6 @@ header p {
   align-items: center;
   border: #554b32 2px solid;
   border-radius: 10px;
-  margin-top: 30px;
 }
 
 .grid--container {
@@ -45,39 +43,59 @@ header p {
   border: #9bb289 3px dotted;
 }
 
+/*투두리스트*/
+
+.todo {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-category {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  width: 374px;
+  height: 390px;
+}
+
+.todo--list {
+  display: flex;
+  flex-direction: column;
+}
+
 .todo--title {
   display: flex;
   align-items: center;
 }
 
-.todo--title .title1 {
+.home {
   display: inline;
   padding: 3px 15px;
   border-radius: 3px;
   background-color: #f5b137;
 }
 
-.todo--title .title2 {
+.sopt {
   display: inline;
   padding: 3px 15px;
   border-radius: 3px;
   background-color: #fb8081;
 }
-.todo--title .title3 {
+.school {
   display: inline;
   padding: 3px 15px;
   border-radius: 3px;
   background-color: #61c5eb;
 }
 
-.todo--title .title4 {
+.secret {
   display: inline;
   padding: 3px 15px;
   border-radius: 3px;
   background-color: rgb(185, 119, 232);
 }
 
-.todo--title button {
+.addBtn {
   width: 32px;
   height: 33px;
   border: #554b32 2px solid;
@@ -85,23 +103,8 @@ header p {
   background-color: rgb(255, 255, 255);
 }
 
-.todo--title button:hover {
+.addBtn:hover {
   background-color: #9bb289;
-}
-
-.todo {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.todo-category {
-  width: 170px;
-  height: 180px;
-}
-
-.todo .todo--list {
-  display: flex;
 }
 
 .detail span {
@@ -115,82 +118,15 @@ header p {
 }
 
 /*list hover*/
-.todo--list img:hover {
-  opacity: 0;
+.status {
+  cursor: pointer;
 }
 
-.todo--list img:hover + .DoneHambbung {
-  display: block;
-}
-.DoneHambbung {
-  display: none;
-  position: absolute;
-  top: 515px;
+.status:hover {
+  color: red;
 }
 
-.todo--list img:hover + .DoneHambbung0 {
-  display: block;
-}
-.DoneHambbung0 {
-  display: none;
-  position: absolute;
-  top: 460px;
-}
-
-.todo--list img:hover + .DoneHambbung1 {
-  display: block;
-}
-.DoneHambbung1 {
-  display: none;
-  position: absolute;
-  top: 640px;
-}
-
-.todo--list img:hover + .DoneHambbung2 {
-  display: block;
-}
-.DoneHambbung2 {
-  display: none;
-  position: absolute;
-  top: 695px;
-}
-
-.todo--list img:hover + .DoneHambbung3 {
-  display: block;
-}
-.DoneHambbung3 {
-  display: none;
-  position: absolute;
-  top: 640px;
-}
-
-.todo--list img:hover + .DoneHambbung4 {
-  display: block;
-}
-.DoneHambbung4 {
-  display: none;
-  position: absolute;
-  top: 695px;
-}
-
-.todo--list img:hover + .NoHambbung1 {
-  display: block;
-}
-.NoHambbung1 {
-  display: none;
-  position: absolute;
-  top: 455px;
-}
-
-.todo--list img:hover + .NoHambbung2 {
-  display: block;
-}
-.NoHambbung2 {
-  display: none;
-  position: absolute;
-  top: 515px;
-}
-
+/*풋터*/
 footer {
   display: flex;
   justify-content: space-around;
@@ -202,9 +138,10 @@ footer {
 /* info */
 .info {
   margin: 7px;
-  height: 170px;
+  height: 130px;
   border: #554b32 3px solid;
   border-radius: 5px;
+  font-size: 12px;
 }
 
 .use-direction h4 {
@@ -252,4 +189,34 @@ footer {
 .mypage-button:hover {
   color: #9bb289;
   background-color: white;
+}
+
+/*모달 만들기*/
+.modal-content {
+  position: absolute;
+  top: 55%;
+  right: 5%;
+  width: 350px;
+  height: 100px;
+  z-index: 1;
+  background-color: #090c15d7;
+  color: #fff2d3;
+}
+
+.modal-content input {
+  width: 120px;
+  height: 20px;
+  display: block;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#saveAddBtn {
+  display: block;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 140px;
+  color: black;
 }

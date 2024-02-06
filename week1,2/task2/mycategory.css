@@ -1,0 +1,88 @@
+header p {
+  border: 1px #f5b137 solid;
+  background-color: #fdd488;
+  font-size: medium;
+}
+
+.mycategory--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 7px;
+  height: 130px;
+  border: #554b32 3px solid;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.home {
+  display: inline;
+  padding: 3px 15px;
+  border-radius: 3px;
+  background-color: #f5b137;
+}
+
+.sopt {
+  display: inline;
+  padding: 3px 15px;
+  border-radius: 3px;
+  background-color: #fb8081;
+}
+.school {
+  display: inline;
+  padding: 3px 15px;
+  border-radius: 3px;
+  background-color: #61c5eb;
+}
+
+.secret {
+  display: inline;
+  padding: 3px 15px;
+  border-radius: 3px;
+  background-color: rgb(185, 119, 232);
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
+  margin-top: 470px;
+}
+
+.calender--button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 60px;
+  border: #19627f 2px double;
+  border-radius: 50px;
+  background-color: #9bb289;
+  box-shadow: 5px 3px 2px #3e4935;
+}
+
+.calender--button:hover {
+  color: #9bb289;
+  background-color: white;
+}
+
+.mypage--button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 60px;
+  margin-top: 5px;
+  border: #19627f 2px double;
+  border-radius: 50px;
+  background-color: #9bb289;
+  box-shadow: 5px 3px 2px #3e4935;
+}
+
+.mypage-button:hover {
+  color: #9bb289;
+  background-color: white;
+}
